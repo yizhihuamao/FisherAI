@@ -556,36 +556,36 @@ function initResultPage() {
     });
 
     // 网页翻译
-    var translateButton = document.querySelector('#my-extension-translate-btn');
-    translateButton.addEventListener('click', async function() {
-      const modelSelection = document.getElementById('model-selection');
-      const model = modelSelection.value;
-      const apiKeyValid = await verifyApiKeyConfigured(model);
-      if(!apiKeyValid) {
-        return;
-      }
-      let inputText = '';
-      const currentURL = await getCurrentURL();
+    // var translateButton = document.querySelector('#my-extension-translate-btn');
+    // translateButton.addEventListener('click', async function() {
+    //   const modelSelection = document.getElementById('model-selection');
+    //   const model = modelSelection.value;
+    //   const apiKeyValid = await verifyApiKeyConfigured(model);
+    //   if(!apiKeyValid) {
+    //     return;
+    //   }
+    //   let inputText = '';
+    //   const currentURL = await getCurrentURL();
 
-      try {
-        if(isVideoUrl(currentURL)) {
-          // 视频翻译
-          inputText = await extractSubtitles(currentURL, FORMAT_TEXT);
-        } else if(isPDFUrl(currentURL)) {
-          // PDF 翻译
-          inputText = await extractPDFText(currentURL);
-        } else {
-          // 网页翻译
-          inputText = await fetchPageContent();
-        }
-      } catch(error) {
-        console.error('网页翻译失败', error);
-        displayErrorMessage(`网页翻译失败: ${error.message}`);
-        return;
-      }
+    //   try {
+    //     if(isVideoUrl(currentURL)) {
+    //       // 视频翻译
+    //       inputText = await extractSubtitles(currentURL, FORMAT_TEXT);
+    //     } else if(isPDFUrl(currentURL)) {
+    //       // PDF 翻译
+    //       inputText = await extractPDFText(currentURL);
+    //     } else {
+    //       // 网页翻译
+    //       inputText = await fetchPageContent();
+    //     }
+    //   } catch(error) {
+    //     console.error('网页翻译失败', error);
+    //     displayErrorMessage(`网页翻译失败: ${error.message}`);
+    //     return;
+    //   }
 
-      await clearAndGenerate(model, TRANSLATE2CHN_PROMPT + inputText, null);
-    });
+    //   await clearAndGenerate(model, TRANSLATE2CHN_PROMPT + inputText, null);
+    // });
 
     // 视频翻译
     var videoTranslateButton = document.querySelector('#my-extension-videotrans-btn');
@@ -596,8 +596,12 @@ function initResultPage() {
       if(!apiKeyValid) {
         return;
       }
+
+      // 判断当前域名是否是 bilibili 或者 youtube
       const currentURL = await getCurrentURL();
+      console.log('currentURL: ', currentURL);
       if(!isVideoUrl(currentURL)) {
+        displayErrorMessage(`当前非 bilibili 或者 youtube 视频页面，无法进行视频总结。`);
         return;
       }
 
@@ -607,8 +611,8 @@ function initResultPage() {
         inputText = await extractSubtitles(currentURL, FORMAT_TEXT);
         console.log('inputText: ', inputText);
       } catch(error) {
-        console.error('视频翻译失败', error);
-        displayErrorMessage(`视频翻译失败: ${error.message}`);
+        console.error('视频总结失败', error);
+        displayErrorMessage(`视频总结失败: ${error.message}`);
         return;
       }
      

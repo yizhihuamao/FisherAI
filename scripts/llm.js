@@ -1,5 +1,6 @@
 // 对话历史（OpenAI兼容格式）
 let dialogueHistory = [];
+let uuid = "";
 
 // 对话历史数组（gemini）
 let geminiDialogueHistory = [];
@@ -36,7 +37,8 @@ function initChatHistory() {
     "role": "system",
     "content": systemPrompt
   }];
-  geminiDialogueHistory = []
+  geminiDialogueHistory = [];
+  uuid = "";
 }
 
 
@@ -129,6 +131,13 @@ function createRequestParams(additionalHeaders, body) {
   };
 }
 
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+  });
+}
+
 /**
  * call llm
  * @param {string} model 
@@ -152,6 +161,8 @@ async function chatWithLLM(model, inputText, base64Images, type) {
   if(type == HUACI_TRANS_TYPE) {
     dialogueHistory[0].content = '';
   }
+
+  if(!uuid) uuid = generateUUID();
 
   const openaiDialogueEntry = createDialogueEntry('user', 'content', inputText, base64Images, model);
   const geminiDialogueEntry = createDialogueEntry('user', 'parts', inputText, base64Images, model);
@@ -312,6 +323,7 @@ async function chatWithOpenAIFormat(baseUrl, apiKey, modelName, type) {
     max_tokens: maxTokens,
     stream: true,
     messages: dialogueHistory,
+    uuid: uuid,
     tools: []
   };
 
