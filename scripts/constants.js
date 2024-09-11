@@ -196,6 +196,9 @@ const TRANSLATE2CHN_PROMPT = `
 你要翻译成中文的内容如下：\n\n`;
 
 
+const VIDEO_SUMMARY_PROMPT = `
+你是一位视频摘要生成专家，你能为用户生成一个简洁而准确的视频摘要。
+`
 const SUBTITLE2CHN_PROMPT = `
 你是一位精通简体中文的专业翻译，擅长将视频字幕翻译为中文。
 

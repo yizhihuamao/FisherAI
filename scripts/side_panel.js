@@ -601,16 +601,18 @@ function initResultPage() {
         return;
       }
 
+      let inputText = '';
       try {
         // 视频翻译
-        const inputText = await extractSubtitles(currentURL, FORMAT_TEXT);
+        inputText = await extractSubtitles(currentURL, FORMAT_TEXT);
+        console.log('inputText: ', inputText);
       } catch(error) {
         console.error('视频翻译失败', error);
         displayErrorMessage(`视频翻译失败: ${error.message}`);
         return;
       }
      
-      await clearAndGenerate(model, SUBTITLE2CHN_PROMPT + inputText, null);
+      inputText && await clearAndGenerate(model, VIDEO_SUMMARY_PROMPT + inputText, null);
     });
 
 
