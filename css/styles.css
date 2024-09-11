@@ -152,7 +152,7 @@
 
 .my-extension-dialogue-submit, .my-extension-dialogue-generate {
   padding: 5px;
-  background-color: #3C3C3C;
+  background-color: #28a745;
   color: white;
   cursor: pointer;
   border: none;
@@ -162,6 +162,7 @@
 
 .my-extension-dialogue-submit.disabled {
   cursor: not-allowed;
+  background-color: #3C3C3C;
 }
 
 .my-extension-dialogue-generate {
