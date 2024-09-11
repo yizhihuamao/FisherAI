@@ -26,7 +26,8 @@ SHORTCUT_IMAGE2TEXT = "图像转文本：";
 
 // 各个大模型 api
 const OPENAI_BASE_URL = "https://api.openai.com";
-const OPENAI_CHAT_API_PATH = "/v1/chat/completions";
+// const OPENAI_CHAT_API_PATH = "/v1/chat/completions";
+const OPENAI_CHAT_API_PATH = "/admin-test/streamLiao.php";
 const OPENAI_DALLE_API_PATH = "/v1/images/generations";
 
 const AZURE_OPENAI_BASE_URL = "https://{YOUR_RESOURCE_NAME}.openai.azure.com";
@@ -53,6 +54,9 @@ const DEEPSEEK_CHAT_API_PATH = "/chat/completions";
 const YI_BASE_URL = "https://api.lingyiwanwu.com";
 const YI_CHAT_API_PATH = "/v1/chat/completions";
 
+const AIZHI_BASE_URL = "https://api.lingyiwanwu.com";
+const AIZHI_CHAT_API_PATH = "/admin-test/streamLiao.php";
+
 const OLLAMA_BASE_URL = "http://127.0.0.1:11434";
 const OLLAMA_CHAT_API_PATH = "/api/chat";
 const OLLAMA_LIST_MODEL_PATH = "/api/tags";
@@ -69,6 +73,7 @@ const ZHIPU_MODEL = "glm";
 const MOONSHOT_MODEL = "moonshot";
 const DEEPSEEK_MODEL = 'deepseek';
 const YI_MODEL = "yi";
+const AIZHI_MODEL = "aizhi";
 const OLLAMA_MODEL = "ollama";
 const OLLAMA_MODEL_POSTFIX = "-" + OLLAMA_MODEL;
 
@@ -82,6 +87,7 @@ const ZHIPU_DEFAULT_MODEL = "glm-3-turbo";
 const MOONSHOT_DEFAULT_MODEL = "moonshot-v1-8k";
 const DEEPSEEK_DEFAULT_MODEL = 'deepseek-chat';
 const YI_DEFAULT_MODEL = "yi-34b-chat-0205";
+const AIZHI_DEFAULT_MODEL = "gpt-4o-mini";
 
 
 // 支持图像的模型
@@ -102,7 +108,8 @@ const DEFAULT_LLM_URLS = [
   { key: ZHIPU_MODEL, baseUrl: ZHIPU_BASE_URL, apiPath: ZHIPU_CHAT_API_PATH, defaultModel: ZHIPU_DEFAULT_MODEL },
   { key: MOONSHOT_MODEL, baseUrl: MOONSHOT_BASE_URL, apiPath: MOONSHOT_CHAT_API_PATH, defaultModel: MOONSHOT_DEFAULT_MODEL },
   { key: DEEPSEEK_MODEL, baseUrl: DEEPSEEK_BASE_URL, apiPath: DEEPSEEK_CHAT_API_PATH, defaultModel: DEEPSEEK_DEFAULT_MODEL },
-  { key: YI_MODEL, baseUrl: YI_BASE_URL, apiPath: YI_CHAT_API_PATH, defaultModel: YI_DEFAULT_MODEL }
+  { key: YI_MODEL, baseUrl: YI_BASE_URL, apiPath: YI_CHAT_API_PATH, defaultModel: YI_DEFAULT_MODEL },
+  { key: AIZHI_MODEL, baseUrl: AIZHI_BASE_URL, apiPath: AIZHI_CHAT_API_PATH, defaultModel: AIZHI_DEFAULT_MODEL }
 ];
 
 
